@@ -63,10 +63,9 @@ func Test_GrpcConnPool(t *testing.T) {
 				break
 			}
 		}
-		// 10000次 只要7ms.
 		cost := time.Now().Sub(begin).Nanoseconds()
 		t.Log(cost)
-		t.Logf("%d ns/op", cost/1000000) // 730 op/ns
+		t.Logf("%d ns/op", cost/1000000) 
 	}()
 
 	addr := "0.0.0.0:13688"
