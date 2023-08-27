@@ -8,12 +8,12 @@ package grpc_conn_pool
 
 import (
 	"errors"
-	"google.golang.org/grpc/credentials/insecure"
 	"sync"
 	"sync/atomic"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/connectivity"
+	"google.golang.org/grpc/credentials/insecure"
 )
 
 var ErrConn = errors.New("grpc conn has error Shutdown or TransientFailure")

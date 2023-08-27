@@ -7,16 +7,18 @@ Desc: pool_test.go
 package grpc_conn_pool_test
 
 import (
-	grpc_conn_pool "github.com/cr-mao/grpc-conn-pool"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials/insecure"
 	"net"
 	"testing"
 	"time"
+
+	"github.com/cr-mao/grpc-conn-pool"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 )
 
 func Test_GrpcConnPool(t *testing.T) {
 
+	target := "127.0.0.1:13688"
 	go func() {
 		clientBuilder := grpc_conn_pool.NewClientBuilder(&grpc_conn_pool.Options{
 			PoolSize: 20,
@@ -28,7 +30,7 @@ func Test_GrpcConnPool(t *testing.T) {
 		i := 0
 		begin := time.Now()
 		for {
-			conn, err := clientBuilder.GetConn("127.0.0.1:13688")
+			conn, err := clientBuilder.GetConn(target)
 			if err != nil {
 				t.Errorf("get conn err %v", err)
 				return
